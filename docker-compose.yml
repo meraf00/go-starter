@@ -1,0 +1,41 @@
+services:
+  # api:
+  #   build: .
+  #   container_name: goapi-api
+  #   ports:
+  #     - "8000:8000"
+  #   environment:
+  #     DB_USER: ${DB_USER}
+  #     DB_PASS: ${DB_PASS}
+  #     DB_NAME: ${DB_NAME}
+  #     DB_HOST: postgres
+  #     DB_PORT: 5432
+  #     REDIS_HOST: redis
+  #     REDIS_PORT: 6379
+  #   depends_on:
+  #     - redis
+  #     - postgres
+
+  redis:
+    image: redis:8.2.0
+    container_name: goapi-redis
+    ports:
+      - '6379:6379'
+    volumes:
+      - goapi-redisdata:/data
+
+  # postgres:
+  #   image: postgres:17
+  #   container_name: goapi-postgres
+  #   environment:
+  #     POSTGRES_USER: ${DB_USER}
+  #     POSTGRES_PASSWORD: ${DB_PASS}
+  #     POSTGRES_DB: ${DB_NAME}
+  #   ports:
+  #     - "5432:5432"
+  #   volumes:
+  #     - goapi-pgdata:/var/lib/postgresql/data
+
+volumes:
+  goapi-redisdata:
+  # goapi-pgdata:
